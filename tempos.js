@@ -34,7 +34,7 @@ function parseData(){
 					logtext += " B-"+dados.Blue.Time+"-"+dados.Blue.Length;
 					logtext += "\n"
 				}
-				fs.appendFile('registoTempos', logtext, function (err) {});
+				fs.appendFile(process.env.OPENSHIFT_DATA_DIR+'registoTempos', logtext, function (err) {});
 			}
         }
     })
@@ -46,7 +46,7 @@ setInterval(parseData, INTERVALO_TEMPO);
 var app     = express();
 
 app.get('/', function(req, res){
-	res.download("registoTempos");
+	res.download(process.env.OPENSHIFT_DATA_DIR+"registoTempos");
 })
 
 var port = process.env.OPENSHIFT_NODEJS_PORT || 8080
