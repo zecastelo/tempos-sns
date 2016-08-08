@@ -5,6 +5,11 @@ var fs = require('fs');
 var request = require('request');
 var cheerio = require('cheerio');
 var express = require('express');
+var http = require('http');
+var app     = express();
+
+app.set('port', process.env.OPENSHIFT_NODEJS_PORT || 8080);
+app.set('ip', process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1');
 
 function parseData(){
 	request(URL, function(error, response, data){
@@ -45,10 +50,13 @@ parseData();
 setInterval(parseData, INTERVALO_TEMPO);
 */
 
-var app     = express();
+
+http.createServer(app).listen(app.get('port'), app.get('ip'), function(){
+  console.log('Express server listening on port ' + app.get('port'));
+});
 
 app.get('/', function(req, res){
-	res.send(process.env.OPENSHIFT_DATA_DIR);
+	res.send('Hello world!');
 	//res.download(process.env.OPENSHIFT_DATA_DIR+"registoTempos");
 })
 
