@@ -49,5 +49,6 @@ app.get('/', function(req, res){
 	res.download("registoTempos");
 })
 
-app.listen('8080')
+port = process.env.PORT || '8080'
+app.listen(port);
 
