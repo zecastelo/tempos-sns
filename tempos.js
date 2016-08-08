@@ -47,7 +47,7 @@ var app     = express();
 
 app.get('/', function(req, res){
 	res.write(process.env.OPENSHIFT_DATA_DIR);
-	res.download(process.env.OPENSHIFT_DATA_DIR+"registoTempos");
+	//res.download(process.env.OPENSHIFT_DATA_DIR+"registoTempos");
 })
 
 var port = process.env.OPENSHIFT_NODEJS_PORT || 8080
