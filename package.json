@@ -8,5 +8,9 @@
     "express"    : "latest",
     "request"    : "latest",
     "cheerio"    : "latest"
-  }
+  },
+  "scripts" : {
+	  "start" : "node tempos.js"
+  },
+  "main" : "tempos.js"
 }
