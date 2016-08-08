@@ -40,13 +40,15 @@ function parseData(){
     })
 }
 
+/*
 parseData();
 setInterval(parseData, INTERVALO_TEMPO);
+*/
 
 var app     = express();
 
 app.get('/', function(req, res){
-	res.write(process.env.OPENSHIFT_DATA_DIR);
+	res.send(process.env.OPENSHIFT_DATA_DIR);
 	//res.download(process.env.OPENSHIFT_DATA_DIR+"registoTempos");
 })
 
