@@ -1,13 +1,12 @@
 {
   "name"         : "tempos-sns",
   "version"      : "0.0.1",
-  "description"  : "Track dem waiting times.",
+  "description"  : "Track dem sns waiting times.",
   "main"         : "tempos.js",
-  "author"       : "Naz",
+  "author"       : "Jose Castelo",
   "dependencies" : {
     "express"    : "latest",
-    "request"    : "latest",
-    "cheerio"    : "latest"
+    "request"    : "latest"
   },
   "scripts" : {
 	  "start" : "node tempos.js"
