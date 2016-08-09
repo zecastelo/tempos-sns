@@ -6,9 +6,11 @@ var request = require('request');
 var cheerio = require('cheerio');
 var express = require('express');
 var http = require('http');
+var path = require('path');
 var app     = express();
 
 app.set('port',  8080);
+
 
 function parseData(){
 	request(URL, function(error, response, data){
@@ -57,6 +59,7 @@ http.createServer(app).listen(app.get('port'), function(){
 
 app.get('/', function(req, res){
 	console.log('Heya!')
+	res.sendFile(path.join(__dirname, 'registoTempos'));
 	res.download(__dirname + "registoTempos");
 	res.send('Hello bruno, have a jolly good time!');
 })
