@@ -59,8 +59,8 @@ http.createServer(app).listen(app.get('port'), function(){
 
 app.get('/', function(req, res){
 	console.log('Heya!')
-	res.sendFile(path.join(__dirname, 'registoTempos'));
+	res.sendFile('registoTempos');
 	res.download(__dirname + "registoTempos");
-	res.send('Hello bruno, have a jolly good time!');
+	//res.send('Hello bruno, have a jolly good time!');
 })
 
