@@ -38,9 +38,10 @@ function parseData(){
 					logtext += " B-"+dados.Blue.Time+"-"+dados.Blue.Length;
 					logtext += "\n"
 				}
-				fs.appendFile('registoTempos', logtext, function (err) {});
+				fs.appendFile('registoTempos', logtext, function (err) {console.log(err)});
 			}
         }
+		console.log(error);
     })
 }
 
