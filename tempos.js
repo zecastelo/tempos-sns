@@ -63,7 +63,7 @@ app.get('/', function(req, res){
 	console.log('Heya!')
 	res.sendFile(__dirname + 'registoTempos');
 	//res.send('Hello bruno, have a jolly good time!');
-	function puts(error, stdout, stderr) { res.sendFile("../export-xls/output.xlsx")}
-	exec("python ../export-xls/export.py", puts);
+	function puts(error, stdout, stderr) { res.sendFile(__dirname + "/export-xls/output.xlsx")}
+	exec("python " + __dirname + "/export-xls/export.py", puts);
 })
 
