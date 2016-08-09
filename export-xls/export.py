@@ -40,7 +40,8 @@ for i in range(7):
 		worksheet.write(1, col, 'Tempo (s)', formats[a])
 		col += 1
 	
-for line in lines:
+LASTINFO = [0, 0, 0, 0, 0, 0, 0]
+for i, line in enumerate(lines):
 	line_split = line.split()
 	col_multiplier = 0
 	info = [];
@@ -73,27 +74,28 @@ for line in lines:
 	#							 	OrangePacientsNum, OrangePacientsTime, YellowPacientsNum, YellowPacientsTime, 
 	#								GreenPacientsNum, GreenPacientsTime, BluePacientsNum, BluePacientsTime.
 	
-	for i, item in enumerate(info):
-		if i == 0:
-			(date, time) = item.split('T')
-			(year, month, day) = date.split('-')
-			time = time.split('.')[0];
-			worksheet.write(row, col, year)
-			col+=1
-			worksheet.write(row, col, month)
-			col+=1
-			worksheet.write(row, col, day)
-			col+=1
-			worksheet.write(row, col, time)
-			col+=1
-		else:
-			(color, wait_time, count) = item.split('-')
-			worksheet.write(row, col, count)
-			col+=1
-			worksheet.write(row, col, wait_time)
-			col+=1
-	rows[col_multiplier]+=1;
-	print(info)
+	if info != LASTINFO[col_multiplier]:
+		for i, item in enumerate(info):
+			if i == 0:
+				(date, time) = item.split('T')
+				(year, month, day) = date.split('-')
+				time = time.split('.')[0];
+				worksheet.write(row, col, year)
+				col+=1
+				worksheet.write(row, col, month)
+				col+=1
+				worksheet.write(row, col, day)
+				col+=1
+				worksheet.write(row, col, time)
+				col+=1
+			else:
+				(color, wait_time, count) = item.split('-')
+				worksheet.write(row, col, count)
+				col+=1
+				worksheet.write(row, col, wait_time)
+				col+=1
+		rows[col_multiplier]+=1;
+		LASTINFO[col_multiplier] = info
 	
 file.close()
 wb.close();
