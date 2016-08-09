@@ -12,6 +12,7 @@ UTILIZAÇÃO:
 
 1. Fazer o download deste repositório.
 2. Abrir um terminal na pasta.
+4. Instalar as dependencias do Node.js (comando "npm install").
 3. Correr no terminal o commando "node tempos.js".
 
 Ao aceder o IP do servidor será feito o download do ficheiro .xlsx (Excel) que contem os dados recolhidos.
