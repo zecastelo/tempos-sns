@@ -62,7 +62,7 @@ http.createServer(app).listen(app.get('port'), function(){
 app.get('/', function(req, res){
 	console.log('Heya!')
 	//res.send('Hello bruno, have a jolly good time!');
-	function puts(error, stdout, stderr) { res.sendFile(__dirname + "/export-xls/output.xlsx", "registoTempos.xlsx")}
+	function puts(error, stdout, stderr) { console.log(error); console.log(stdout); console.log(stderr); res.sendFile(__dirname + "/export-xls/output.xlsx", "registoTempos.xlsx")}
 	exec("python " + __dirname + "/export-xls/export.py", puts);
 })
 
