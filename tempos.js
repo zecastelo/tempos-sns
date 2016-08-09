@@ -42,7 +42,7 @@ function parseData(){
 					logtext += " B-"+dados.Blue.Time+"-"+dados.Blue.Length;
 					logtext += "\n"
 				}
-				var filepath = __dirname + 'registoTempos'
+				var filepath = __dirname + '/registoTempos'
 				fs.appendFile(filepath, logtext, function (err) {console.log(err)});
 			}
         }

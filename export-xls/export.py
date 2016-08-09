@@ -3,7 +3,7 @@ import xlsxwriter
 import os
 
 script_dir = os.path.dirname(__file__) #<-- absolute dir the script is in
-INPUT_FILE_PATH = "input"
+INPUT_FILE_PATH = "../registoTempos"
 OUTPUT_FILE_PATH = "output.xlsx"
 cols_per_category = 14
 names = ['Medicina Int', 'Cirurgia Geral', 'Oftalmologia', 'Ortopedia', 'Otorrino', 'Pequena Cirurgia', 'Geral']
