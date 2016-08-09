@@ -14,7 +14,7 @@ UTILIZAÇÃO:
 2. Abrir um terminal na pasta.
 3. Correr no terminal o commando "node tempos.js".
 
-Ao aceder o IP do servidor será feito o download do ficheiro .xlsx (Excell) que contem os dados recolhidos.
+Ao aceder o IP do servidor será feito o download do ficheiro .xlsx (Excel) que contem os dados recolhidos.
 
 
 José Castelo, 2016 (jbcastelo@hotmail.com)
