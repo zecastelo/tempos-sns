@@ -3,7 +3,6 @@ INTERVALO_TEMPO = 3600/2 * 1000;
 
 var fs = require('fs');
 var request = require('request');
-var cheerio = require('cheerio');
 var express = require('express');
 var http = require('http');
 var path = require('path');
