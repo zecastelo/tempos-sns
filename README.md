@@ -6,7 +6,7 @@ Neste momento está limitado ao hospital de São José, mas é facilmente extens
 REQUISITOS:
 
 1. Qualquer sistema UNIX.
-2. Node.js (Versão mais actual) e Python (2.7)
+2. Node.js (Versão mais actual) e Python (2.7) (com dependencia da livraria XslxWriter)
 
 UTILIZAÇÃO:
 
