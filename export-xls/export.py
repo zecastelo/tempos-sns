@@ -77,6 +77,7 @@ for line in lines:
 		if i == 0:
 			(date, time) = item.split('T')
 			(year, month, day) = date.split('-')
+			time = time.split('.')[0];
 			worksheet.write(row, col, year)
 			col+=1
 			worksheet.write(row, col, month)
