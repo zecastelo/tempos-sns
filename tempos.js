@@ -46,7 +46,9 @@ function parseData(){
 				fs.appendFile(filepath, logtext, function (err) {console.log(err)});
 			}
         }
-		console.log(error);
+		else { 
+			console.log(error); 
+		}
     })
 }
 
@@ -60,9 +62,15 @@ http.createServer(app).listen(app.get('port'), function(){
 });
 
 app.get('/', function(req, res){
-	console.log('Heya!')
-	//res.send('Hello bruno, have a jolly good time!');
-	function puts(error, stdout, stderr) { console.log(error); console.log(stdout); console.log(stderr); res.sendFile(__dirname + "/export-xls/output.xlsx", "registoTempos.xlsx")}
+	function puts(error, stdout, stderr) {
+		if (error){
+			console.log(stderr);
+			res.send(stderr);
+		} else {
+			res.setHeader('Content-disposition', 'attachment; filename=registoTemposSNS211.xlsx');
+			res.sendFile(__dirname + "/export-xls/output.xlsx", "registoTempos.xlsx");
+		}
+	}
 	exec("python " + __dirname + "/export-xls/export.py", puts);
 })
 

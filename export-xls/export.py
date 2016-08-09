@@ -2,14 +2,14 @@
 import xlsxwriter
 import os
 
-script_dir = os.path.dirname(__file__) #<-- absolute dir the script is in
+SCRIPT_DIR = os.path.dirname(__file__)
 INPUT_FILE_PATH = "../registoTempos"
 OUTPUT_FILE_PATH = "output.xlsx"
 cols_per_category = 14
 names = ['Medicina Int', 'Cirurgia Geral', 'Oftalmologia', 'Ortopedia', 'Otorrino', 'Pequena Cirurgia', 'Geral']
-file = open(os.path.join(script_dir, INPUT_FILE_PATH), "r")
+file = open(os.path.join(SCRIPT_DIR, INPUT_FILE_PATH), "r")
 lines = file.readlines()
-wb = xlsxwriter.Workbook(os.path.join(script_dir, OUTPUT_FILE_PATH))
+wb = xlsxwriter.Workbook(os.path.join(SCRIPT_DIR, OUTPUT_FILE_PATH))
 worksheet = wb.add_worksheet('Dados')
 formats = [wb.add_format(), wb.add_format(), wb.add_format(), wb.add_format(), wb.add_format()]
 
