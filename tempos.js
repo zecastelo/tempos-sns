@@ -7,6 +7,8 @@ var cheerio = require('cheerio');
 var express = require('express');
 var http = require('http');
 var path = require('path');
+var sys = require('sys')
+var exec = require('child_process').exec;
 var app     = express();
 
 app.set('port',  8080);
@@ -61,5 +63,7 @@ app.get('/', function(req, res){
 	console.log('Heya!')
 	res.sendFile(__dirname + 'registoTempos');
 	//res.send('Hello bruno, have a jolly good time!');
+	function puts(error, stdout, stderr) { res.sendFile("../export-xls/output.xlsx")}
+	exec("python ../export-xls/export.py", puts);
 })
 
