@@ -8,8 +8,7 @@ var express = require('express');
 var http = require('http');
 var app     = express();
 
-app.set('port', process.env.OPENSHIFT_NODEJS_PORT || 8080);
-app.set('ip', process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1');
+app.set('port',  8080);
 
 function parseData(){
 	request(URL, function(error, response, data){
@@ -39,7 +38,7 @@ function parseData(){
 					logtext += " B-"+dados.Blue.Time+"-"+dados.Blue.Length;
 					logtext += "\n"
 				}
-				fs.appendFile(process.env.OPENSHIFT_DATA_DIR+'registoTempos', logtext, function (err) {});
+				fs.appendFile('registoTempos', logtext, function (err) {});
 			}
         }
     })
@@ -59,7 +58,4 @@ app.get('/', function(req, res){
 	res.send('Hello world!');
 	//res.download(process.env.OPENSHIFT_DATA_DIR+"registoTempos");
 })
-
-var port = process.env.OPENSHIFT_NODEJS_PORT || 8080
-app.listen(port);
 
