@@ -44,18 +44,18 @@ function parseData(){
     })
 }
 
-/*
+
 parseData();
 setInterval(parseData, INTERVALO_TEMPO);
-*/
 
 
-http.createServer(app).listen(app.get('port'), app.get('ip'), function(){
+http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 
 app.get('/', function(req, res){
 	res.send('Hello world!');
+	console.log('Heya!')
 	//res.download(process.env.OPENSHIFT_DATA_DIR+"registoTempos");
 })
 
