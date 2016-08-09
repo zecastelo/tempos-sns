@@ -1,6 +1,6 @@
 # tempos-sns
 
-O tempos-sns server para recolher dados do Serviço Nacional Saude. Mais concretamente recolhe dados sobre as urgências (tempos e filas de espera). 
+O tempos-sns recolhe dados do Serviço Nacional Saude. Mais concretamente recolhe dados sobre as urgências (tempos e filas de espera). 
 Neste momento está limitado ao hospital de São José, mas é facilmente extensivel a outros.
 
 REQUISITOS:
