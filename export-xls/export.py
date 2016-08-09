@@ -1,8 +1,8 @@
 # Export data from flattextfile to xls.
 import xlsxwriter
 
-INPUT_FILE_PATH = "input"
-MODEL_FILE_PATH = "output.xlsx"
+INPUT_FILE_PATH = "./input"
+MODEL_FILE_PATH = "./output.xlsx"
 cols_per_category = 14
 names = ['Medicina Int', 'Cirurgia Geral', 'Oftalmologia', 'Ortopedia', 'Otorrino', 'Pequena Cirurgia', 'Geral']
 file = open(INPUT_FILE_PATH, "r")
