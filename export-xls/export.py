@@ -1,13 +1,15 @@
 # Export data from flattextfile to xls.
 import xlsxwriter
+import os
 
-INPUT_FILE_PATH = "./input"
-MODEL_FILE_PATH = "./output.xlsx"
+script_dir = os.path.dirname(__file__) #<-- absolute dir the script is in
+INPUT_FILE_PATH = "input"
+OUTPUT_FILE_PATH = "output.xlsx"
 cols_per_category = 14
 names = ['Medicina Int', 'Cirurgia Geral', 'Oftalmologia', 'Ortopedia', 'Otorrino', 'Pequena Cirurgia', 'Geral']
-file = open(INPUT_FILE_PATH, "r")
+file = open(os.path.join(script_dir, INPUT_FILE_PATH), "r")
 lines = file.readlines()
-wb = xlsxwriter.Workbook(MODEL_FILE_PATH)
+wb = xlsxwriter.Workbook(os.path.join(script_dir, OUTPPUT_FILE_PATH))
 worksheet = wb.add_worksheet('Dados')
 formats = [wb.add_format(), wb.add_format(), wb.add_format(), wb.add_format(), wb.add_format()]
 
