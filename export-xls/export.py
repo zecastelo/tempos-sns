@@ -26,7 +26,6 @@ for line in lines:
 	else:
 		break
 
-""""
 wb = xlsxwriter.Workbook(os.path.join(SCRIPT_DIR, OUTPUT_FILE_PATH))
 worksheet = wb.add_worksheet('Dados')
 formats = [wb.add_format(), wb.add_format(), wb.add_format(), wb.add_format(), wb.add_format()]
@@ -106,4 +105,4 @@ for i, line in enumerate(lines):
 		LASTINFO[col_multiplier] = info
 	
 file.close()
-wb.close();"""
+wb.close();
