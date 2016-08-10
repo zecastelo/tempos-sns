@@ -63,7 +63,7 @@ LASTINFO = [0 for i in range(len(names))]
 for i, line in enumerate(lines):
 	line_split = line.split()
 	(name, infox) = line.split('>>');
-	col_multiplier = names.index(name.strip());
+	col_multiplier = names.index(str(name.strip()));
 	info = infox.split();
 		
 	col = col_multiplier * cols_per_category;
