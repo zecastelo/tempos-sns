@@ -16,11 +16,12 @@ cols_per_category = 16
 names = []
 data = False
 
-with open(os.path.join(SCRIPT_DIR, INPUT_FILE_PATH), 'r') as data_file:    
-    data = json.load(data_file)
-
+f = open(os.path.join(SCRIPT_DIR, INPUT_FILE_PATH), 'r')   
+data = json.load(data_file)
+print(sys.argv[1]);
 print(data);
-for entry in data['entries']:
+for i in range(len(data['entries'])):
+	entry = data['entries'][i]
 	name = entry['emergency']['name'] + " - " + entry['queue']['name']
 	if name not in names:
 		names.append(name)
