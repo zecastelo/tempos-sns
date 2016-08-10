@@ -66,15 +66,16 @@ for i in range(len(names)):
 		col += 1
 	
 LASTINFO = [0 for i in range(len(names))]
-for i, entry in enumerate(data['entries']):
-	name = entry['data']['emergency']['name'] + " - " + entry['data']['queue']['name']
+for i, e in enumerate(data['entries']):
+	name = e['data']['emergency']['name'] + " - " + e['data']['queue']['name']
 	col_multiplier = names.index(name);	
 	col = col_multiplier * cols_per_category;
 	row = rows[col_multiplier];
 	# Column order is as follows: 	DateYear(yyyy), DateMonth(mm), DateDay (dd), RedPacientsNum, RedPacientsTime,    OUTDATED FIXME
 	#							 	OrangePacientsNum, OrangePacientsTime, YellowPacientsNum, YellowPacientsTime, 
 	#								GreenPacientsNum, GreenPacientsTime, BluePacientsNum, BluePacientsTime.
-	
+	entry = data['entries'][i]
+	print(entry)
 	if entry['entryDate'] != LASTINFO[col_multiplier]:
 		(date, tm) = entry['entryDate'].split('T')
 		(year, month, day) = date.split('-')
