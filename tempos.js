@@ -101,7 +101,7 @@ function genBackup(){
 	console.log("Making a new backup named " + bckupname);
 	exec("mkdir " + __dirname + "/bkup/" + bckupname);
 	for (key in INSTITUICOES){
-		exec("cp " + __dirname + "/instituiton-"+key+".json " + __dirname + "/bkup/" + bckupname + "instituiton-"+key+".json");
+		exec("cp " + __dirname + "/instituiton-"+key+".json " + __dirname + "/bkup/" + bckupname + "/instituiton-"+key+".json");
 	}
 	console.log("Backup is completed");
 }
@@ -185,7 +185,6 @@ app.get('/excel/:instid', function(req, res){
 		}
 	}
 	exec("python " + __dirname + "/export-xls/export.py " +  req.params.instid, puts);
-	genBackup();
 })
 
 setInterval(genBackup, 3600*5*1000)
