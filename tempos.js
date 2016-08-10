@@ -1,6 +1,3 @@
-BASE_URL = "http://tempos.min-saude.pt/api.php/standbyTime/";
-INTERVALO_TEMPO = 3600/2 * 1000;
-
 var fs = require('fs');
 var request = require('request');
 var express = require('express');
@@ -11,8 +8,78 @@ var exec = require('child_process').exec;
 var app     = express();
 var INSTITUICOES = require('./instituicoes.js')
 
+BASE_URL = "http://tempos.min-saude.pt/api.php/standbyTime/";
+INTERVALO_TEMPO = 3600/2 * 1000;
 app.set('port',  8080);
 
+function Entry(){
+	this.entryDate = 0;
+	this.gatherDate = 0;
+	this.error = false;
+	this.errorType = 0;
+	this.data = {
+		"emergency" : {
+			"code" : "",
+			"name" : ""
+		},	
+		"queue" : {
+			"code" : "",
+			"name" : ""
+		},		
+		"colors" : {
+			"red" : {
+				"queue-length" : 0,
+				"queue-time" : 0
+			},
+			"orange" : {
+				"queue-length" : 0,
+				"queue-time" : 0
+			},
+			"yellow" : {
+				"queue-length" : 0,
+				"queue-time" : 0
+			},
+			"green" : {
+				"queue-length" : 0,
+				"queue-time" : 0
+			},
+			"blue" : {
+				"queue-length" : 0,
+				"queue-time" : 0
+			}
+		}
+	};
+}
+
+function writeJsonFile(object, filepath){
+	fs.writeFileSync(filepath, JSON.stringify(object));
+}
+
+function InstitutionFile(institutionId, callback) {
+	this.id = institutionId;
+	this.path = __dirname + "/instituiton-" + this.id;
+	this.error = false;
+	this.content = {
+		'entries':[]
+	};
+	fs.readFile(this.path, "utf8", function(err, data){
+		if (err){
+			this.error = true;
+			console.log("Error loading JSON File (InstitutionFile Constructor)")
+		} else {
+			this.content = JSON.parse(data);
+		}
+		callback(this);
+	})
+}
+
+InstitutionFile.prototype.save(){
+	writeJsonFile(this.content, this.path);
+}
+
+a = new InstitutionFile(211, function(file){
+	console.log(file.error);
+})
 
 function parseData(id){
 	request(BASE_URL + id, function(error, response, data){
