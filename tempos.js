@@ -18,33 +18,37 @@ function parseData(id){
 	request(BASE_URL + id, function(error, response, data){
 		var filepath = __dirname + '/registoTempos-'+id
         if(!error){
-			data = JSON.parse(data);
-			for (i in data.Result) {
-				var logtext = "";
-				if (data.Result[i].Queue != null) {
-					var dados = dados = data.Result[i]
-					logtext += data.Result[i].Emergency.Description + " - " + data.Result[i].Queue.Description + " >> ";
-					logtext += dados.LastUpdate+"\t";
-					logtext += " R-"+dados.Red.Time+"-"+dados.Red.Length+"\t";
-					logtext += " O-"+dados.Orange.Time+"-"+dados.Orange.Length+"\t";
-					logtext += " Y-"+dados.Yellow.Time+"-"+dados.Yellow.Length+"\t";
-					logtext += " G-"+dados.Green.Time+"-"+dados.Green.Length+"\t";
-					logtext += " B-"+dados.Blue.Time+"-"+dados.Blue.Length;
-					logtext += "\n"
-				} else {
-					var dados = dados = data.Result[i]
-					logtext += data.Result[i].Emergency.Description + " - " +  "Geral" + " >> ";
-					logtext += dados.LastUpdate+"\t";
-					logtext += " R-"+dados.Red.Time+"-"+dados.Red.Length+"\t";
-					logtext += " O-"+dados.Orange.Time+"-"+dados.Orange.Length+"\t";
-					logtext += " Y-"+dados.Yellow.Time+"-"+dados.Yellow.Length+"\t";
-					logtext += " G-"+dados.Green.Time+"-"+dados.Green.Length+"\t";
-					logtext += " B-"+dados.Blue.Time+"-"+dados.Blue.Length;
-					logtext += "\n"
+			try {
+				data = JSON.parse(data);
+				for (i in data.Result) {
+					var logtext = "";
+					if (data.Result[i].Queue != null) {
+						var dados = dados = data.Result[i]
+						logtext += data.Result[i].Emergency.Description + " - " + data.Result[i].Queue.Description + " >> ";
+						logtext += dados.LastUpdate+"\t";
+						logtext += " R-"+dados.Red.Time+"-"+dados.Red.Length+"\t";
+						logtext += " O-"+dados.Orange.Time+"-"+dados.Orange.Length+"\t";
+						logtext += " Y-"+dados.Yellow.Time+"-"+dados.Yellow.Length+"\t";
+						logtext += " G-"+dados.Green.Time+"-"+dados.Green.Length+"\t";
+						logtext += " B-"+dados.Blue.Time+"-"+dados.Blue.Length;
+						logtext += "\n"
+					} else {
+						var dados = dados = data.Result[i]
+						logtext += data.Result[i].Emergency.Description + " - " +  "Geral" + " >> ";
+						logtext += dados.LastUpdate+"\t";
+						logtext += " R-"+dados.Red.Time+"-"+dados.Red.Length+"\t";
+						logtext += " O-"+dados.Orange.Time+"-"+dados.Orange.Length+"\t";
+						logtext += " Y-"+dados.Yellow.Time+"-"+dados.Yellow.Length+"\t";
+						logtext += " G-"+dados.Green.Time+"-"+dados.Green.Length+"\t";
+						logtext += " B-"+dados.Blue.Time+"-"+dados.Blue.Length;
+						logtext += "\n"
+					}
+					
+					fs.appendFile(filepath, logtext, function (err) {if (err){console.log("Error append file (tempos.js): ");console.log(err)}});
 				}
-				
-				fs.appendFile(filepath, logtext, function (err) {if (err){console.log("Error append file (tempos.js): ");console.log(err)}});
-			}
+		} catch(error) {
+			console.log(error)
+		}
         }
 		else { 
 			console.log("Error gathering data (tempos.js): " + id)
