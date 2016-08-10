@@ -73,7 +73,7 @@ function InstitutionFile(institutionId, callback) {
 	})
 }
 
-InstitutionFile.prototype.save(){
+InstitutionFile.prototype.save = function (){
 	writeJsonFile(this.content, this.path);
 }
 
