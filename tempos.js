@@ -101,7 +101,7 @@ a = new InstitutionFile(211);
 a.save();
 
 function parseData(id){
-	var ins = new InstutitonFile(id);
+	var ins = new InstitutionFile(id);
 	var entry = new Entry();
 	request(BASE_URL + id, function(error, response, data){
         if(!error){
