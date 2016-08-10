@@ -58,8 +58,6 @@ function writeJsonFile(object, filepath){
 function InstitutionFile(institutionId) {
 	this.id = institutionId;
 	this.path = __dirname + "/instituiton-" + institutionId +".json";
-	console.log("The path is :")
-	console.log(this.path)
 	this.error = false;
 	this.loaded = false;
 	this.content = {
@@ -70,6 +68,8 @@ function InstitutionFile(institutionId) {
 
 InstitutionFile.prototype.loadFile = function (exists){
 	if (exists){
+		console.log("The path is :")
+		console.log(this.path)
 		fs.readFile(this.path, "utf8", function(err, data){
 			if (err){
 				this.error = true;
