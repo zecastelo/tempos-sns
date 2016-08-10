@@ -78,8 +78,7 @@ function InstitutionFile(institutionId, callback) {
 		else {
 			callback(this);
 		}
-	})
-	}))
+	});
 }
 
 InstitutionFile.prototype.save = function (){
