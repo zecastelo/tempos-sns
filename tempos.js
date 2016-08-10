@@ -62,15 +62,23 @@ function InstitutionFile(institutionId, callback) {
 	this.content = {
 		'entries':[]
 	};
-	fs.readFile(this.path, "utf8", function(err, data){
-		if (err){
-			this.error = true;
-			console.log("Error loading JSON File (InstitutionFile Constructor)")
-		} else {
-			this.content = JSON.parse(data);
+	fs.exists(this.path, function(exists){
+		if (exists){
+			fs.readFile(this.path, "utf8", function(err, data){
+			if (err){
+				this.error = true;
+				console.log("Error loading JSON File (InstitutionFile Constructor)")
+				callback(this);
+			} else {
+				this.content = JSON.parse(data);
+				callback(this);
+			}
 		}
-		callback(this);
+		else (){
+			callback(this);
+		}
 	})
+	}))
 }
 
 InstitutionFile.prototype.save = function (){
@@ -80,6 +88,8 @@ InstitutionFile.prototype.save = function (){
 a = new InstitutionFile(211, function(file){
 	console.log(file.error);
 })
+
+a.save();
 
 function parseData(id){
 	request(BASE_URL + id, function(error, response, data){
