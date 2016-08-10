@@ -42,7 +42,7 @@ function parseData(id){
 					logtext += "\n"
 				}
 				var filepath = __dirname + '/registoTempos-'+id
-				fs.appendFile(filepath, logtext, function (err) {console.log(err)});
+				fs.appendFile(filepath, logtext, function (err) {if (err){console.log(err)}});
 			}
         }
 		else { 
@@ -51,9 +51,12 @@ function parseData(id){
     })
 }
 
+var isntcount = 0;
+var insttimediff = 1000;
 for (key in INSTITUICOES){
 	parseData(key);
-	setInterval(parseData, INTERVALO_TEMPO, key);
+	setTimeout(insttimediff * instcount, function(){setInterval(parseData, INTERVALO_TEMPO, key);})
+	instcount++;
 }
 
 
