@@ -166,15 +166,13 @@ http.createServer(app).listen(app.get('port'), function(){
 
 app.get('/:instId', function(req, res){
 	function puts(error, stdout, stderr) {
-		/*
 		if (error){
 			console.log(stderr);
 			res.send("Oops, something went wrong!");
 		} else {
 			res.setHeader('Content-disposition', 'attachment; filename=registoTemposSNS'+req.params.instId+'.xlsx');
 			res.sendFile(__dirname + "/export-xls/output.xlsx");
-		}*/
-		res.send(stdout)
+		}
 	}
 	console.log(req.params.instId);
 	exec("python " + __dirname + "/export-xls/export.py " +  req.params.instId, puts);
