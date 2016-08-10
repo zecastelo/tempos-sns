@@ -1,9 +1,10 @@
 # Export data from flattextfile to xls.
 import xlsxwriter
 import os
+import sys
 
 SCRIPT_DIR = os.path.dirname(__file__)
-INPUT_FILE_PATH = "../registoTempos"
+INPUT_FILE_PATH = "../registoTempos-"+sys.argv[1]
 OUTPUT_FILE_PATH = "output.xlsx"
 cols_per_category = 14
 names = ['Medicina Int', 'Cirurgia Geral', 'Oftalmologia', 'Ortopedia', 'Otorrino', 'Pequena Cirurgia', 'Geral']

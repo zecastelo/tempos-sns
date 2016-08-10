@@ -1,4 +1,4 @@
-URL = "http://tempos.min-saude.pt/api.php/standbyTime/211";
+BASE_URL = "http://tempos.min-saude.pt/api.php/standbyTime/";
 INTERVALO_TEMPO = 3600/2 * 1000;
 
 var fs = require('fs');
@@ -13,9 +13,8 @@ var app     = express();
 app.set('port',  8080);
 
 
-function parseData(){
-	request(URL, function(error, response, data){
-
+function parseData(id){
+	request(BASE_URL + id, function(error, response, data){
         if(!error){
 			data = JSON.parse(data);
 			for (i in data.Result) {
@@ -41,7 +40,7 @@ function parseData(){
 					logtext += " B-"+dados.Blue.Time+"-"+dados.Blue.Length;
 					logtext += "\n"
 				}
-				var filepath = __dirname + '/registoTempos'
+				var filepath = __dirname + '/registoTempos-'+id
 				fs.appendFile(filepath, logtext, function (err) {console.log(err)});
 			}
         }
@@ -52,24 +51,24 @@ function parseData(){
 }
 
 
-parseData();
-setInterval(parseData, INTERVALO_TEMPO);
+parseData(211);
+setInterval(parseData, INTERVALO_TEMPO, 211);
 
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 
-app.get('/', function(req, res){
+app.get('/:instId', function(req, res){
 	function puts(error, stdout, stderr) {
 		if (error){
 			console.log(stderr);
 			res.send(stderr);
 		} else {
-			res.setHeader('Content-disposition', 'attachment; filename=registoTemposSNS211.xlsx');
-			res.sendFile(__dirname + "/export-xls/output.xlsx", "registoTempos.xlsx");
+			res.setHeader('Content-disposition', 'attachment; filename=registoTemposSNS'+req.params.instId+'.xlsx');
+			res.sendFile(__dirname + "/export-xls/output.xlsx");
 		}
 	}
-	exec("python " + __dirname + "/export-xls/export.py", puts);
+	exec("python " + __dirname + "/export-xls/export.py " +  req.params.instId, puts);
 })
 
