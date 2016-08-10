@@ -110,7 +110,7 @@ function parseData(id){
 				for (i in data.Result) {
 					var dados = dados = data.Result[i]
 					
-					entry.entryDate = dados.lastUpdate;
+					entry.entryDate = dados.LastUpdate;
 					entry.gatherDate = (new Date()).getTime();
 					
 					entry.data.emergency.code = dados.Emergency.Code;
