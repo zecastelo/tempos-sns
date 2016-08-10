@@ -117,8 +117,8 @@ function parseData(id){
 					entry.data.emergency.name = dados.Emergency.Description;
 						
 					if (data.Result[i].Queue != null) {		
-						entry.data.queue.code = dados.Emergency.Code;
-						entry.data.queue.name = dados.Emergency.Description;
+						entry.data.queue.code = dados.Queue.Code;
+						entry.data.queue.name = dados.Queue.Description;
 						
 					} else {
 						entry.data.queue.code = false;
