@@ -102,12 +102,12 @@ a.save();
 
 function parseData(id){
 	var ins = new InstitutionFile(id);
-	var entry = new Entry();
 	request(BASE_URL + id, function(error, response, data){
         if(!error){
 			try {
 				data = JSON.parse(data);
 				for (i in data.Result) {
+					var entry = new Entry();
 					var dados = dados = data.Result[i]
 					
 					entry.entryDate = dados.LastUpdate;
@@ -137,8 +137,8 @@ function parseData(id){
 					entry.data.colors.blue['queue-time'] = dados.Blue.Time;
 					
 					ins.addEntry(entry);
-					ins.save();
 				}
+				ins.save();
 		} catch(error) {
 			console.log(error)
 		}
