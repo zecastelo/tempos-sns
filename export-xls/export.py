@@ -6,10 +6,20 @@ import sys
 SCRIPT_DIR = os.path.dirname(__file__)
 INPUT_FILE_PATH = "../registoTempos-"+sys.argv[1]
 OUTPUT_FILE_PATH = "output.xlsx"
-cols_per_category = 14
-names = ['Medicina Int', 'Cirurgia Geral', 'Oftalmologia', 'Ortopedia', 'Otorrino', 'Pequena Cirurgia', 'Geral']
+cols_per_category = 15
+names = []
 file = open(os.path.join(SCRIPT_DIR, INPUT_FILE_PATH), "r")
 lines = file.readlines()
+
+
+for line in lines:
+	(name, info) == line.split('>>')
+	if name not in names:
+		names.append(name)
+	else:
+		break
+
+
 wb = xlsxwriter.Workbook(os.path.join(SCRIPT_DIR, OUTPUT_FILE_PATH))
 worksheet = wb.add_worksheet('Dados')
 formats = [wb.add_format(), wb.add_format(), wb.add_format(), wb.add_format(), wb.add_format()]
@@ -22,9 +32,9 @@ formats[4].set_bg_color('blue');
 
 
 
-rows = [2, 2, 2, 2, 2, 2, 2];
+rows = [2 for i in range(len(names))];
 
-for i in range(7):
+for i in range(len(names))):
 	worksheet.write(0, i*cols_per_category, names[i])
 	col = cols_per_category * i
 	worksheet.write(1, col, 'Ano')
@@ -35,39 +45,20 @@ for i in range(7):
 	col += 1
 	worksheet.write(1, col, 'Hora')
 	col += 1
+	worksheet.write(1, col, 'EPOCH')
+	col += 1
 	for a in range(5):
 		worksheet.write(1, col, '#Doentes', formats[a])
 		col += 1
 		worksheet.write(1, col, 'Tempo (s)', formats[a])
 		col += 1
 	
-LASTINFO = [0, 0, 0, 0, 0, 0, 0]
+LASTINFO = [0 for i in range(len(names))]
 for i, line in enumerate(lines):
 	line_split = line.split()
-	col_multiplier = 0
-	info = [];
-	if line_split[0] == 'Espera:':
-		if line_split[1] == 'Otorrino':
-			info = line_split[3:]
-			col_multiplier = 4
-		elif line_split[1] == 'Ortopedia':
-			info = line_split[3:]
-			col_multiplier = 3
-		elif line_split[1] == 'Oftalmologia':
-			info = line_split[3:]
-			col_multiplier = 2
-		elif line_split[1] == 'Medicina' and line_split[2] == 'Int.':
-			info = line_split[4:]
-			col_multiplier = 0
-		elif line_split[1] == 'Peq.' and line_split[2] == 'Cirurgia':
-			info = line_split[4:]
-			col_multiplier = 5
-		elif line_split[1] == 'Cirurgia' and line_split[2] == 'Geral':
-			info = line_split[4:]
-			col_multiplier = 1
-	elif line_split[0] == 'Geral':
-		info = line_split[2:]
-		col_multiplier = 6
+	(name, infox) = line.split('>>');
+	col_multiplier = names.index(name);
+	info = infox.split();
 		
 	col = col_multiplier * cols_per_category;
 	row = rows[col_multiplier];
@@ -88,6 +79,8 @@ for i, line in enumerate(lines):
 				worksheet.write(row, col, day)
 				col+=1
 				worksheet.write(row, col, time)
+				col+=1
+				worksheet.write(row, col, 0) #FIXME ESCREVER O TEMPO EM EPOCH
 				col+=1
 			else:
 				(color, wait_time, count) = item.split('-')
