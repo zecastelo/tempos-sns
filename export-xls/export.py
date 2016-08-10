@@ -22,9 +22,9 @@ data = json.load(f)
 print(sys.argv[1]);
 print(data);
 for i in range(len(data[u'entries'])):
-	entry = data[u'entries'][i]
+	entry_data = data[u'entries'][i]['data']
 	print(entry);
-	name = data[u'entries'][i]['emergency'][u'name'] + " - " + data[u'entries'][i][u'queue'][u'name']
+	name = entry_data['emergency'][u'name'] + " - " + entry_data[u'queue'][u'name']
 	if name not in names:
 		names.append(name)
 
@@ -70,7 +70,7 @@ for i in range(len(names)):
 	
 LASTINFO = [0 for i in range(len(names))]
 for i, entry in enumerate(data['entries']):
-	name = entry['emergency']['name'] + " - " + entry['queue']['name']
+	name = entry['data']['emergency']['name'] + " - " + entry['data']['queue']['name']
 	col_multiplier = names.index(name);	
 	col = col_multiplier * cols_per_category;
 	row = rows[col_multiplier];
