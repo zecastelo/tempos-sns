@@ -17,9 +17,9 @@ lines = file.readlines()
 
 for line in lines:
 	(name, info) = line.split('>>')
-	name = str(name.strip())
+	name = str(name.strip()).strip();
 	if name not in names:
-		names.append(name).strip())
+		names.append(name)
 	else:
 		break
 
