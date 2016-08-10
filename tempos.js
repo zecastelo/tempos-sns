@@ -83,10 +83,14 @@ function InstitutionFile(institutionId) {
 		else {
 			self.loaded = true;
 		}
-	}
+	};
 	
 	this.save = function (){
 		writeJsonFile(self.content, self.path);
+	};
+	
+	this.addEntry = function(entry){
+		self.content.entries.push(entry);
 	}
 	
 	fs.exists(this.path, this.loadFile);
@@ -97,36 +101,43 @@ a = new InstitutionFile(211);
 a.save();
 
 function parseData(id){
+	var ins = new InstuitonFile(id);
+	var entry = new Entry();
 	request(BASE_URL + id, function(error, response, data){
-		var filepath = __dirname + '/registoTempos-'+id
         if(!error){
 			try {
 				data = JSON.parse(data);
 				for (i in data.Result) {
-					var logtext = "";
-					if (data.Result[i].Queue != null) {
-						var dados = dados = data.Result[i]
-						logtext += data.Result[i].Emergency.Description + " - " + data.Result[i].Queue.Description + " >> ";
-						logtext += dados.LastUpdate+"\t";
-						logtext += " R-"+dados.Red.Time+"-"+dados.Red.Length+"\t";
-						logtext += " O-"+dados.Orange.Time+"-"+dados.Orange.Length+"\t";
-						logtext += " Y-"+dados.Yellow.Time+"-"+dados.Yellow.Length+"\t";
-						logtext += " G-"+dados.Green.Time+"-"+dados.Green.Length+"\t";
-						logtext += " B-"+dados.Blue.Time+"-"+dados.Blue.Length;
-						logtext += "\n"
+					var dados = dados = data.Result[i]
+					
+					entry.entryDate = dados.lastUpdate;
+					entry.gatherDate = (new Date()).getTime();
+					
+					entry.data.emergency.code = dados.Emergency.Code;
+					entry.data.emergency.name = dados.Emergency.Description;
+						
+					if (data.Result[i].Queue != null) {		
+						entry.data.queue.code = dados.Emergency.Code;
+						entry.data.queue.name = dados.Emergency.Description;
+						
 					} else {
-						var dados = dados = data.Result[i]
-						logtext += data.Result[i].Emergency.Description + " - " +  "Geral" + " >> ";
-						logtext += dados.LastUpdate+"\t";
-						logtext += " R-"+dados.Red.Time+"-"+dados.Red.Length+"\t";
-						logtext += " O-"+dados.Orange.Time+"-"+dados.Orange.Length+"\t";
-						logtext += " Y-"+dados.Yellow.Time+"-"+dados.Yellow.Length+"\t";
-						logtext += " G-"+dados.Green.Time+"-"+dados.Green.Length+"\t";
-						logtext += " B-"+dados.Blue.Time+"-"+dados.Blue.Length;
-						logtext += "\n"
+						entry.data.queue.code = false;
+						entry.data.queue.name = 'Geral';
 					}
 					
-					fs.appendFile(filepath, logtext, function (err) {if (err){console.log("Error append file (tempos.js): ");console.log(err)}});
+					entry.data.colors.red.queue-length = dados.Red.Length;
+					entry.data.colors.red.queue-time = dados.Red.Time;
+					entry.data.colors.orange.queue-length = dados.Orange.Length;
+					entry.data.colors.orange.queue-time = dados.Orange.Time;
+					entry.data.colors.yellow.queue-length = dados.Yellow.Length;
+					entry.data.colors.yellow.queue-time = dados.Yellow.Time;
+					entry.data.colors.green.queue-length = dados.Green.Length;
+					entry.data.colors.green.queue-time = dados.Green.Time;
+					entry.data.colors.blue.queue-length = dados.Blue.Length;
+					entry.data.colors.blue.queue-time = dados.Blue.Time;
+					
+					ins.addEntry(entry);
+					ins.save();
 				}
 		} catch(error) {
 			console.log(error)
