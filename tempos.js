@@ -65,13 +65,14 @@ function InstitutionFile(institutionId, callback) {
 	fs.exists(this.path, function(exists){
 		if (exists){
 			fs.readFile(this.path, "utf8", function(err, data){
-			if (err){
-				this.error = true;
-				console.log("Error loading JSON File (InstitutionFile Constructor)")
-				callback(this);
-			} else {
-				this.content = JSON.parse(data);
-				callback(this);
+				if (err){
+					this.error = true;
+					console.log("Error loading JSON File (InstitutionFile Constructor)")
+					callback(this);
+				} else {
+					this.content = JSON.parse(data);
+					callback(this);
+				}
 			}
 		}
 		else (){
