@@ -19,9 +19,6 @@ function parseData(id){
 		var filepath = __dirname + '/registoTempos-'+id
         if(!error){
 			data = JSON.parse(data);
-			if (!('Result' in data)) {
-				fs.appendFile(filepath, "", function (err) {if (err){console.log("Error append file (tempos.js): ");console.log(err)}});
-			}
 			for (i in data.Result) {
 				var logtext = "";
 				if (data.Result[i].Queue != null) {
