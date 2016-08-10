@@ -32,9 +32,9 @@ formats[4].set_bg_color('blue');
 
 
 
-rows = [2 for i in range(len(names))];
+rows = [2 for i in range(len(names))]
 
-for i in range(len(names))):
+for i in range(len(names)):
 	worksheet.write(0, i*cols_per_category, names[i])
 	col = cols_per_category * i
 	worksheet.write(1, col, 'Ano')
