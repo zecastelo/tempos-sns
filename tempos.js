@@ -167,6 +167,7 @@ http.createServer(app).listen(app.get('port'), function(){
 app.get('/:instId', function(req, res){
 	function puts(error, stdout, stderr) {
 		if (error){
+			consoel.log("Error in puts!\n");
 			console.log(stderr);
 			res.send("Oops, something went wrong!");
 		} else {
@@ -174,7 +175,6 @@ app.get('/:instId', function(req, res){
 			res.sendFile(__dirname + "/export-xls/output.xlsx");
 		}
 	}
-	console.log(req.params.instId);
 	exec("python " + __dirname + "/export-xls/export.py " +  req.params.instId, puts);
 })
 
