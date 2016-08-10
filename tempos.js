@@ -97,7 +97,7 @@ function InstitutionFile(institutionId) {
 }
 
 function genBackup(){
-	var bckupname = (new Date()).getTime())
+	var bckupname = (new Date()).getTime()
 	console.log("Making a new backup named " + bckupname);
 	exec("mkdir " + __dirname + "/bkup/" + bckupname);
 	for (key in INSTITUICOES){
