@@ -21,6 +21,7 @@ data = False
 with open(os.path.join(SCRIPT_DIR, INPUT_FILE_PATH), 'r') as data_file:    
     data = json.load(data_file)
 
+print(data);
 for entry in data['entries']:
 	name = entry['emergency']['name'] + " - " + entry['queue']['name']
 	if name not in names:
