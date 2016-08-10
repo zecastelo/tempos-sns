@@ -23,7 +23,7 @@ function parseData(id){
 				var logtext = "";
 				if (data.Result[i].Queue != null) {
 					var dados = dados = data.Result[i]
-					logtext += data.Result[i].Queue.Description + " >> ";
+					logtext += data.Result[i].Emergency.Description + " - " + data.Result[i].Queue.Description + " >> ";
 					logtext += dados.LastUpdate+"\t";
 					logtext += " R-"+dados.Red.Time+"-"+dados.Red.Length+"\t";
 					logtext += " O-"+dados.Orange.Time+"-"+dados.Orange.Length+"\t";
@@ -33,7 +33,7 @@ function parseData(id){
 					logtext += "\n"
 				} else {
 					var dados = dados = data.Result[i]
-					logtext += "Geral" + " >> ";
+					logtext += data.Result[i].Emergency.Description + " - " +  "Geral" + " >> ";
 					logtext += dados.LastUpdate+"\t";
 					logtext += " R-"+dados.Red.Time+"-"+dados.Red.Length+"\t";
 					logtext += " O-"+dados.Orange.Time+"-"+dados.Orange.Length+"\t";
