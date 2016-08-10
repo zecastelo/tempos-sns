@@ -73,7 +73,7 @@ function InstitutionFile(institutionId, callback) {
 					this.content = JSON.parse(data);
 					callback(this);
 				}
-			}
+			});
 		}
 		else (){
 			callback(this);
