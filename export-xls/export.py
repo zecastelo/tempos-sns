@@ -1,4 +1,6 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
 # Export data from flattextfile to xls.
 import xlsxwriter
 import os
