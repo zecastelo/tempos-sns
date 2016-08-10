@@ -56,6 +56,7 @@ function writeJsonFile(object, filepath){
 }
 
 function InstitutionFile(institutionId) {
+	var self = this;
 	this.id = institutionId;
 	this.path = __dirname + "/instituiton-" + institutionId +".json";
 	this.error = false;
@@ -67,25 +68,25 @@ function InstitutionFile(institutionId) {
 	this.loadFile = function (exists){
 		if (exists){
 			console.log("The path is :")
-			console.log(this.path)
-			fs.readFile(this.path, "utf8", function(err, data){
+			console.log(self.path)
+			fs.readFile(self.path, "utf8", function(err, data){
 				if (err){
-					this.error = true;
-					this.loaded = true;
+					self.error = true;
+					self.loaded = true;
 					console.log("Error loading JSON File (InstitutionFile Constructor)")
 				} else {
-					this.content = JSON.parse(data);
-					this.loaded = true;
+					self.content = JSON.parse(data);
+					self.loaded = true;
 				}
 			});
 		}
 		else {
-			this.loaded = true;
+			self.loaded = true;
 		}
 	}
 	
 	this.save = function (){
-		writeJsonFile(this.content, this.path);
+		writeJsonFile(self.content, self.path);
 	}
 	
 	fs.exists(this.path, this.loadFile);
