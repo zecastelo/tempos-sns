@@ -4,6 +4,7 @@ import xlsxwriter
 import os
 import sys
 import codecs
+import time
 
 SCRIPT_DIR = os.path.dirname(__file__)
 INPUT_FILE_PATH = "../registoTempos-"+str(sys.argv[1])
@@ -82,7 +83,10 @@ for i, line in enumerate(lines):
 				col+=1
 				worksheet.write(row, col, time)
 				col+=1
-				worksheet.write(row, col, 0) #FIXME ESCREVER O TEMPO EM EPOCH
+				timestr = year+"-"+month+"-"+day+" "+time
+				pattern = '%Y.%m.%d %H:%M:%S'
+				epoch = int(time.mktime(time.strptime(timestr, pattern)))
+				worksheet.write(row, col, epoch) #FIXME ESCREVER O TEMPO EM EPOCH
 				col+=1
 			else:
 				(color, wait_time, count) = item.split('-')
