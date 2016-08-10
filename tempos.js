@@ -55,7 +55,7 @@ var instcount = 0;
 var insttimediff = 1000;
 for (key in INSTITUICOES){
 	parseData(key);
-	setTimeout(insttimediff * instcount, function(){setInterval(parseData, INTERVALO_TEMPO, key);})
+	setTimeout(insttimediff * instcount + 100, function(){setInterval(parseData, INTERVALO_TEMPO, key);})
 	instcount++;
 }
 
