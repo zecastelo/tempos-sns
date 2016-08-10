@@ -23,7 +23,8 @@ print(sys.argv[1]);
 print(data);
 for i in range(len(data['entries'])):
 	entry = data['entries'][i]
-	name = entry['emergency']['name'] + " - " + entry['queue']['name']
+	print(entry);
+	name = entry["emergency"]['name'] + " - " + entry['queue']['name']
 	if name not in names:
 		names.append(name)
 
