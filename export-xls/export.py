@@ -17,7 +17,7 @@ names = []
 data = False
 
 f = open(os.path.join(SCRIPT_DIR, INPUT_FILE_PATH), 'r')   
-data = json.load(data_file)
+data = json.load(f)
 print(sys.argv[1]);
 print(data);
 for i in range(len(data['entries'])):
