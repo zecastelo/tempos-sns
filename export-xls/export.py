@@ -9,7 +9,7 @@ import time
 SCRIPT_DIR = os.path.dirname(__file__)
 INPUT_FILE_PATH = "../registoTempos-"+str(sys.argv[1])
 OUTPUT_FILE_PATH = "output.xlsx"
-cols_per_category = 15
+cols_per_category = 16
 names = []
 file = codecs.open(os.path.join(SCRIPT_DIR, INPUT_FILE_PATH), "r", "utf-8")
 lines = file.readlines()
@@ -50,6 +50,8 @@ for i in range(len(names)):
 	col += 1
 	worksheet.write(1, col, 'EPOCH')
 	col += 1
+	worksheet.write(1, col, 'DateStamp')
+	col += 1
 	for a in range(5):
 		worksheet.write(1, col, '#Doentes', formats[a])
 		col += 1
@@ -87,6 +89,8 @@ for i, line in enumerate(lines):
 				pattern = '%Y-%m-%d %H:%M:%S'
 				epoch = int(time.mktime(time.strptime(timestr, pattern)))
 				worksheet.write(row, col, epoch) #FIXME ESCREVER O TEMPO EM EPOCH
+				col+=1
+				worksheet.write(row, col, item.replace("T", " ")) #FIXME ESCREVER O TEMPO EM EPOCH
 				col+=1
 			else:
 				(color, wait_time, count) = item.split('-')
