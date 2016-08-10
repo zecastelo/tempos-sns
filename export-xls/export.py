@@ -102,6 +102,7 @@ for i, e in enumerate(data['entries']):
 		col+=1
 		
 		for a in entry_data['colors'].keys():
+			print(num_patients = entry_data['colors'][a])
 			num_patients = entry_data['colors'][a]['queue-size']
 			wait_time = entry_data['colors'][a]['queue-time']
 
