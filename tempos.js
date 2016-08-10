@@ -164,7 +164,7 @@ http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 
-app.get('/:instId', function(req, res){
+app.get('/excel/:instid', function(req, res){
 	function puts(error, stdout, stderr) {
 		if (error){
 			console.log("Error in puts!\n");
@@ -174,10 +174,10 @@ app.get('/:instId', function(req, res){
 			res.send("Oops, something went wrong!");
 		} else {
 			console.log(stdout);
-			res.setHeader('Content-disposition', 'attachment; filename=registoTemposSNS'+req.params.instId+'.xlsx');
+			res.setHeader('Content-disposition', 'attachment; filename=registoTemposSNS'+req.params.instid+'.xlsx');
 			res.sendFile(__dirname + "/export-xls/output.xlsx");
 		}
 	}
-	exec("python " + __dirname + "/export-xls/export.py " +  req.params.instId, puts);
+	exec("python " + __dirname + "/export-xls/export.py " +  req.params.instid, puts);
 })
 
