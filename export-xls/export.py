@@ -24,7 +24,7 @@ print(data);
 for i in range(len(data[u'entries'])):
 	entry = data[u'entries'][i]
 	print(entry);
-	name = entry[u"emergency"][u'name'] + " - " + entry[u'queue'][u'name']
+	name = entry[u'emergency'][u'name'] + " - " + entry[u'queue'][u'name']
 	if name not in names:
 		names.append(name)
 
