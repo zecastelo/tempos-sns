@@ -75,7 +75,7 @@ function InstitutionFile(institutionId, callback) {
 				}
 			});
 		}
-		else (){
+		else {
 			callback(this);
 		}
 	})
