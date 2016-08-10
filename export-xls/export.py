@@ -60,7 +60,7 @@ for i in range(len(names)):
 	col += 1
 	worksheet.write(1, col, 'DateStamp')
 	col += 1
-	for a in ['red', 'orange', 'yellow', 'green', 'blue']):
+	for a in ['red', 'orange', 'yellow', 'green', 'blue']:
 		worksheet.write(1, col, '#Doentes', formats[a])
 		col += 1
 		worksheet.write(1, col, 'Tempo (s)', formats[a])
