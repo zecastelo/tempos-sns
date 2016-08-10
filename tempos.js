@@ -96,9 +96,15 @@ function InstitutionFile(institutionId) {
 	fs.exists(this.path, this.loadFile);
 }
 
-a = new InstitutionFile(211);
-
-a.save();
+function genBackup(){
+	var bckupname = (new Date()).getTime())
+	console.log("Making a new backup named " + bckupname);
+	exec("mkdir " + __dirname + "/bkup/" + bckupname;
+	for (key in INSTITUICOES){
+		exec("cp " + __dirname + "/instituiton-"+key+".json " + __dirname + "/bkup/" + bckupname + "instituiton-"+key+".json"
+	}
+	console.log("Backup is completed");
+}
 
 function parseData(id){
 	var ins = new InstitutionFile(id);
@@ -179,5 +185,8 @@ app.get('/excel/:instid', function(req, res){
 		}
 	}
 	exec("python " + __dirname + "/export-xls/export.py " +  req.params.instid, puts);
+	genBackup();
 })
+
+setInterval(genBackup, 3600*5*1000)
 
