@@ -63,31 +63,32 @@ function InstitutionFile(institutionId) {
 	this.content = {
 		'entries':[]
 	};
+	
+	this.loadFile = function (exists){
+		if (exists){
+			console.log("The path is :")
+			console.log(this.path)
+			fs.readFile(this.path, "utf8", function(err, data){
+				if (err){
+					this.error = true;
+					this.loaded = true;
+					console.log("Error loading JSON File (InstitutionFile Constructor)")
+				} else {
+					this.content = JSON.parse(data);
+					this.loaded = true;
+				}
+			});
+		}
+		else {
+			this.loaded = true;
+		}
+	}
+	
+	this.save = function (){
+		writeJsonFile(this.content, this.path);
+	}
+	
 	fs.exists(this.path, this.loadFile);
-}
-
-InstitutionFile.prototype.loadFile = function (exists){
-	if (exists){
-		console.log("The path is :")
-		console.log(this.path)
-		fs.readFile(this.path, "utf8", function(err, data){
-			if (err){
-				this.error = true;
-				this.loaded = true;
-				console.log("Error loading JSON File (InstitutionFile Constructor)")
-			} else {
-				this.content = JSON.parse(data);
-				this.loaded = true;
-			}
-		});
-	}
-	else {
-		this.loaded = true;
-	}
-}
-
-InstitutionFile.prototype.save = function (){
-	writeJsonFile(this.content, this.path);
 }
 
 a = new InstitutionFile(211);
