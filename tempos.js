@@ -167,7 +167,7 @@ http.createServer(app).listen(app.get('port'), function(){
 app.get('/:instId', function(req, res){
 	function puts(error, stdout, stderr) {
 		if (error){
-			consoel.log("Error in puts!\n");
+			console.log("Error in puts!\n");
 			console.log(stderr);
 			res.send("Oops, something went wrong!");
 		} else {

@@ -113,5 +113,5 @@ for i, entry in enumerate(data['entries']):
 			
 		LASTINFO[col_multiplier] = entry['entryDate']
 	
-file.close()
+f.close()
 wb.close();
