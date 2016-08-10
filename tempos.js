@@ -18,6 +18,9 @@ function parseData(id){
 	request(BASE_URL + id, function(error, response, data){
         if(!error){
 			data = JSON.parse(data);
+			if (!'Result' in data) {
+				fs.appendFile(filepath, "", function (err) {if (err){console.log("Error append file (tempos.js): ");console.log(err)}});
+			}
 			for (i in data.Result) {
 				var logtext = "";
 				if (data.Result[i].Queue != null) {
@@ -42,10 +45,11 @@ function parseData(id){
 					logtext += "\n"
 				}
 				var filepath = __dirname + '/registoTempos-'+id
-				fs.appendFile(filepath, logtext, function (err) {if (err){console.log(err)}});
+				fs.appendFile(filepath, logtext, function (err) {if (err){console.log("Error append file (tempos.js): ");console.log(err)}});
 			}
         }
 		else { 
+			console.log("Error gathering data (tempos.js): " + id)
 			console.log(error); 
 		}
     })
@@ -55,6 +59,7 @@ var instcount = 0;
 var insttimediff = 1000;
 for (key in INSTITUICOES){
 	parseData(key);
+	console.log('gathered '+key)
 	setTimeout(function(){setInterval(parseData, INTERVALO_TEMPO, key);}, insttimediff * instcount)
 	instcount++;
 }
