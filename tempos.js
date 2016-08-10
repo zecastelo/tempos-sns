@@ -161,7 +161,7 @@ var insttimediff = 1000;
 for (key in INSTITUICOES){
 	parseData(key);
 	console.log('gathered '+key)
-	setTimeout(function(){setInterval(parseData, INTERVALO_TEMPO, key);}, insttimediff * instcount)
+	setInterval(parseData, INTERVALO_TEMPO, key);
 	instcount++;
 }
 
