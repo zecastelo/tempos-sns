@@ -87,8 +87,8 @@ for i, line in enumerate(lines):
 				col+=1
 				worksheet.write(row, col, tm)
 				col+=1
-				timestr = year+"-"+month+"-"+day+" "+tm
-				pattern = '%Y-%m-%d %H:%M:%S'
+				timestr = day+"/"+month+"/"+year+" "+tm
+				pattern = '%d/%m/%Y %H:%M:%S'
 				epoch = int(time.mktime(time.strptime(timestr, pattern)))
 				worksheet.write(row, col, epoch) #FIXME ESCREVER O TEMPO EM EPOCH
 				col+=1
