@@ -17,7 +17,7 @@ cols_per_category = 16
 names = []
 data = False
 
-f = open(os.path.join(SCRIPT_DIR, INPUT_FILE_PATH), 'r')   
+f = codecs.open(os.path.join(SCRIPT_DIR, INPUT_FILE_PATH), 'r', 'utf-8')   
 data = json.load(f)
 print(sys.argv[1]);
 print(data);
