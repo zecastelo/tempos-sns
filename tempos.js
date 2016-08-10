@@ -58,6 +58,7 @@ function writeJsonFile(object, filepath){
 function InstitutionFile(institutionId) {
 	this.id = institutionId;
 	this.path = __dirname + "/instituiton-" + this.id;
+	console.log(path)
 	this.error = false;
 	this.loaded = false;
 	this.content = {
