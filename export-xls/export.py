@@ -10,7 +10,7 @@ import time
 import json
 
 SCRIPT_DIR = os.path.dirname(__file__)
-INPUT_FILE_PATH = "../instituiton-"+str(sys.argv[1])+".json"
+INPUT_FILE_PATH = "../instituiton-"+str(sys.argv[2])+".json"
 OUTPUT_FILE_PATH = "output.xlsx"
 cols_per_category = 16
 names = []
