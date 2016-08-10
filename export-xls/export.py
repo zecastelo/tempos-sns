@@ -19,11 +19,8 @@ data = False
 
 f = codecs.open(os.path.join(SCRIPT_DIR, INPUT_FILE_PATH), 'r', 'utf-8')   
 data = json.load(f)
-print(sys.argv[1]);
-print(data);
 for i in range(len(data[u'entries'])):
 	entry_data = data[u'entries'][i]['data']
-	print(entry);
 	name = entry_data['emergency'][u'name'] + " - " + entry_data[u'queue'][u'name']
 	if name not in names:
 		names.append(name)
