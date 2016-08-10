@@ -18,7 +18,7 @@ lines = file.readlines()
 for line in lines:
 	(name, info) = line.split('>>')
 	if name not in names:
-		names.append(str(name).strip())
+		names.append(str(name.strip()).strip())
 	else:
 		break
 
@@ -62,7 +62,7 @@ LASTINFO = [0 for i in range(len(names))]
 for i, line in enumerate(lines):
 	line_split = line.split()
 	(name, infox) = line.split('>>');
-	col_multiplier = names.index(str(name).strip());
+	col_multiplier = names.index(str(name.strip()).strip());
 	info = infox.split();
 		
 	col = col_multiplier * cols_per_category;
