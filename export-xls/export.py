@@ -7,6 +7,7 @@ import os
 import sys
 import codecs
 import time
+import json
 
 SCRIPT_DIR = os.path.dirname(__file__)
 INPUT_FILE_PATH = "../registoTempos-"+str(sys.argv[1])
@@ -15,25 +16,30 @@ cols_per_category = 16
 names = []
 file = codecs.open(os.path.join(SCRIPT_DIR, INPUT_FILE_PATH), "r", "utf-8")
 lines = file.readlines()
+data = False
 
+with open(os.path.join(SCRIPT_DIR, INPUT_FILE_PATH), 'r') as data_file:    
+    data = json.load(data_file)
 
-for line in lines:
-	(name, info) = line.split('>>')
-	name = name.strip();
+for entry in data['entries']:
+	name = entry['emergency']['name'] + " - " + entry['queue']['name']
 	if name not in names:
 		names.append(name)
-	else:
-		break
 
 wb = xlsxwriter.Workbook(os.path.join(SCRIPT_DIR, OUTPUT_FILE_PATH))
 worksheet = wb.add_worksheet('Dados')
-formats = [wb.add_format(), wb.add_format(), wb.add_format(), wb.add_format(), wb.add_format()]
+formats = 	{	'red':wb.add_format(), 
+				'orange':wb.add_format(), 
+				'yellow':wb.add_format(), 
+				'green':wb.add_format(), 
+				'blue':wb.add_format()
+			}
 
-formats[0].set_bg_color('red');
-formats[1].set_bg_color('orange');
-formats[2].set_bg_color('yellow');
-formats[3].set_bg_color('green');
-formats[4].set_bg_color('blue');
+formats['red'].set_bg_color('red');
+formats['orange'].set_bg_color('orange');
+formats['yellow'].set_bg_color('yellow');
+formats['green'].set_bg_color('green');
+formats['blue'].set_bg_color('blue');
 
 
 
@@ -54,54 +60,58 @@ for i in range(len(names)):
 	col += 1
 	worksheet.write(1, col, 'DateStamp')
 	col += 1
-	for a in range(5):
+	for a in ['red', 'orange', 'yellow', 'green', 'blue']):
 		worksheet.write(1, col, '#Doentes', formats[a])
 		col += 1
 		worksheet.write(1, col, 'Tempo (s)', formats[a])
 		col += 1
 	
 LASTINFO = [0 for i in range(len(names))]
-for i, line in enumerate(lines):
-	line_split = line.split()
-	(name, infox) = line.split('>>');
-	col_multiplier = names.index(name.strip());
-	info = infox.split();
-		
+for i, entry in enumerate(data['entries']):
+	name = entry['emergency']['name'] + " - " + entry['queue']['name']
+	col_multiplier = names.index(name);	
 	col = col_multiplier * cols_per_category;
 	row = rows[col_multiplier];
-	# Column order is as follows: 	DateYear(yyyy), DateMonth(mm), DateDay (dd), RedPacientsNum, RedPacientsTime, 
+	# Column order is as follows: 	DateYear(yyyy), DateMonth(mm), DateDay (dd), RedPacientsNum, RedPacientsTime,    OUTDATED FIXME
 	#							 	OrangePacientsNum, OrangePacientsTime, YellowPacientsNum, YellowPacientsTime, 
 	#								GreenPacientsNum, GreenPacientsTime, BluePacientsNum, BluePacientsTime.
 	
-	if info != LASTINFO[col_multiplier]:
-		for i, item in enumerate(info):
-			if i == 0:
-				(date, tm) = item.split('T')
-				(year, month, day) = date.split('-')
-				tm = tm.split('.')[0];
-				worksheet.write(row, col, year)
-				col+=1
-				worksheet.write(row, col, month)
-				col+=1
-				worksheet.write(row, col, day)
-				col+=1
-				worksheet.write(row, col, tm)
-				col+=1
-				timestr = day+"/"+month+"/"+year+" "+tm
-				pattern = '%d/%m/%Y %H:%M:%S'
-				epoch = int(time.mktime(time.strptime(timestr, pattern)))
-				worksheet.write(row, col, epoch) #FIXME ESCREVER O TEMPO EM EPOCH
-				col+=1
-				worksheet.write(row, col, timestr) #FIXME ESCREVER O TEMPO EM EPOCH
-				col+=1
-			else:
-				(color, wait_time, count) = item.split('-')
-				worksheet.write(row, col, count)
-				col+=1
-				worksheet.write(row, col, wait_time)
-				col+=1
-		rows[col_multiplier]+=1;
-		LASTINFO[col_multiplier] = info
+	if entry['entryDate'] != LASTINFO[col_multiplier]:
+		(date, tm) = entry['entryDate'].split('T')
+		(year, month, day) = date.split('-')
+		tm = tm.split('.')[0];
+		worksheet.write(row, col, year)
+		col+=1
+		
+		worksheet.write(row, col, month)
+		col+=1
+		
+		worksheet.write(row, col, day)
+		col+=1
+		
+		worksheet.write(row, col, tm)
+		col+=1
+		
+		timestr = day+"/"+month+"/"+year+" "+tm
+		pattern = '%d/%m/%Y %H:%M:%S'
+		epoch = int(time.mktime(time.strptime(timestr, pattern)))
+		worksheet.write(row, col, epoch) #FIXME ESCREVER O TEMPO EM EPOCH
+		col+=1
+		
+		worksheet.write(row, col, timestr) #FIXME ESCREVER O TEMPO EM EPOCH
+		col+=1
+		
+		for a in entry['colors'].keys():
+			num_patients = entry['colors'][a]['queue-size']
+			wait_time = entry['colors'][a]['queue-time']
+
+			worksheet.write(row, col, num_patients)
+			col+=1
+			worksheet.write(row, col, wait_time)
+			col+=1
+			rows[col_multiplier]+=1;
+			
+		LASTINFO[col_multiplier] = entry['entryDate']
 	
 file.close()
 wb.close();
