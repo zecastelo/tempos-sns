@@ -22,7 +22,6 @@ for line in lines:
 	name = name.strip();
 	if name not in names:
 		names.append(name)
-		print(name)
 	else:
 		break
 
