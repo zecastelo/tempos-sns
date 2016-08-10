@@ -101,7 +101,7 @@ function genBackup(){
 	console.log("Making a new backup named " + bckupname);
 	exec("mkdir " + __dirname + "/bkup/" + bckupname);
 	for (key in INSTITUICOES){
-		exec("cp " + __dirname + "/instituiton-"+key+".json " + __dirname + "/bkup/" + bckupname + "instituiton-"+key+".json"
+		exec("cp " + __dirname + "/instituiton-"+key+".json " + __dirname + "/bkup/" + bckupname + "instituiton-"+key+".json");
 	}
 	console.log("Backup is completed");
 }
