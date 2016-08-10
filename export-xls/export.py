@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Export data from flattextfile to xls.
 import xlsxwriter
 import os
@@ -17,7 +16,7 @@ lines = file.readlines()
 
 for line in lines:
 	(name, info) = line.split('>>')
-	name = str(name.strip()).strip();
+	name = str(name);
 	if name not in names:
 		names.append(name)
 	else:
@@ -63,7 +62,7 @@ LASTINFO = [0 for i in range(len(names))]
 for i, line in enumerate(lines):
 	line_split = line.split()
 	(name, infox) = line.split('>>');
-	col_multiplier = names.index(str(name.strip()).strip());
+	col_multiplier = names.index(str(name));
 	info = infox.split();
 		
 	col = col_multiplier * cols_per_category;
