@@ -74,6 +74,7 @@ app.get('/:instId', function(req, res){
 			res.sendFile(__dirname + "/export-xls/output.xlsx");
 		}
 	}
+	console.log(req.params.instId);
 	exec("python " + __dirname + "/export-xls/export.py " +  req.params.instId, puts);
 })
 
