@@ -16,6 +16,7 @@ app.set('port',  8080);
 
 function parseData(id){
 	request(BASE_URL + id, function(error, response, data){
+		var filepath = __dirname + '/registoTempos-'+id
         if(!error){
 			data = JSON.parse(data);
 			if (!('Result' in data)) {
@@ -44,7 +45,7 @@ function parseData(id){
 					logtext += " B-"+dados.Blue.Time+"-"+dados.Blue.Length;
 					logtext += "\n"
 				}
-				var filepath = __dirname + '/registoTempos-'+id
+				
 				fs.appendFile(filepath, logtext, function (err) {if (err){console.log("Error append file (tempos.js): ");console.log(err)}});
 			}
         }
