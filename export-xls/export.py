@@ -13,7 +13,7 @@ lines = file.readlines()
 
 
 for line in lines:
-	(name, info) == line.split('>>')
+	(name, info) = line.split('>>')
 	if name not in names:
 		names.append(name)
 	else:
