@@ -4,7 +4,7 @@ import os
 import sys
 
 SCRIPT_DIR = os.path.dirname(__file__)
-INPUT_FILE_PATH = "../registoTempos-"+sys.argv[1]
+INPUT_FILE_PATH = "../registoTempos-"+str(sys.argv[1])
 OUTPUT_FILE_PATH = "output.xlsx"
 cols_per_category = 15
 names = []
