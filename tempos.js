@@ -51,7 +51,7 @@ function parseData(id){
     })
 }
 
-for (key in instituicoes){
+for (key in INSTITUICOES){
 	parseData(key);
 	setInterval(parseData, INTERVALO_TEMPO, key);
 }
