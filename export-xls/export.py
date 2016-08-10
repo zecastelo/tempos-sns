@@ -3,13 +3,14 @@
 import xlsxwriter
 import os
 import sys
+import codecs
 
 SCRIPT_DIR = os.path.dirname(__file__)
 INPUT_FILE_PATH = "../registoTempos-"+str(sys.argv[1])
 OUTPUT_FILE_PATH = "output.xlsx"
 cols_per_category = 15
 names = []
-file = open(os.path.join(SCRIPT_DIR, INPUT_FILE_PATH), "r")
+file = codecs.open(os.path.join(SCRIPT_DIR, INPUT_FILE_PATH), "r", "utf-8")
 lines = file.readlines()
 
 
