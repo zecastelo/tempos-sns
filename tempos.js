@@ -51,7 +51,7 @@ function parseData(id){
     })
 }
 
-var isntcount = 0;
+var instcount = 0;
 var insttimediff = 1000;
 for (key in INSTITUICOES){
 	parseData(key);
