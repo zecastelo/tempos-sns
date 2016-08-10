@@ -75,7 +75,7 @@ for i, e in enumerate(data['entries']):
 	#							 	OrangePacientsNum, OrangePacientsTime, YellowPacientsNum, YellowPacientsTime, 
 	#								GreenPacientsNum, GreenPacientsTime, BluePacientsNum, BluePacientsTime.
 	entry = data['entries'][i]
-	print(entry)
+	entry_data = entry['data']
 	if entry['entryDate'] != LASTINFO[col_multiplier]:
 		(date, tm) = entry['entryDate'].split('T')
 		(year, month, day) = date.split('-')
@@ -101,9 +101,9 @@ for i, e in enumerate(data['entries']):
 		worksheet.write(row, col, timestr) #FIXME ESCREVER O TEMPO EM EPOCH
 		col+=1
 		
-		for a in entry['colors'].keys():
-			num_patients = entry['colors'][a]['queue-size']
-			wait_time = entry['colors'][a]['queue-time']
+		for a in entry_data['colors'].keys():
+			num_patients = entry_data['colors'][a]['queue-size']
+			wait_time = entry_data['colors'][a]['queue-time']
 
 			worksheet.write(row, col, num_patients)
 			col+=1
