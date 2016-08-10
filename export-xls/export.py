@@ -103,7 +103,7 @@ for i, e in enumerate(data['entries']):
 		
 		for a in entry_data['colors'].keys():
 			print(entry_data['colors'][a])
-			num_patients = entry_data['colors'][a]['queue-size']
+			num_patients = entry_data['colors'][a]['queue-length']
 			wait_time = entry_data['colors'][a]['queue-time']
 
 			worksheet.write(row, col, num_patients)
