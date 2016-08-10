@@ -90,7 +90,7 @@ for i, line in enumerate(lines):
 				epoch = int(time.mktime(time.strptime(timestr, pattern)))
 				worksheet.write(row, col, epoch) #FIXME ESCREVER O TEMPO EM EPOCH
 				col+=1
-				worksheet.write(row, col, item.replace("T", " ")) #FIXME ESCREVER O TEMPO EM EPOCH
+				worksheet.write(row, col, timestr) #FIXME ESCREVER O TEMPO EM EPOCH
 				col+=1
 			else:
 				(color, wait_time, count) = item.split('-')
