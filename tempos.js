@@ -9,6 +9,7 @@ var path = require('path');
 var sys = require('sys')
 var exec = require('child_process').exec;
 var app     = express();
+var INSTITUICOES = require('./instituicoes.js')
 
 app.set('port',  8080);
 
@@ -50,9 +51,10 @@ function parseData(id){
     })
 }
 
-
-parseData(211);
-setInterval(parseData, INTERVALO_TEMPO, 211);
+for (key in instituicoes){
+	parseData(key);
+	setInterval(parseData, INTERVALO_TEMPO, key);
+}
 
 
 http.createServer(app).listen(app.get('port'), function(){

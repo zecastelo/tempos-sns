@@ -115,3 +115,5 @@ INSTITUICOES = {
 	'169' : 'Maternidade Bissaya Barreto (Centro Hospitalar e Universitário de Coimbra, EPE) ',
 	'229' : 'Maternidade Dr. Alfredo da Costa (Centro Hospitalar Lisboa Central, EPE)',
 }
+
+module.exports = INSTITUICOES;
