@@ -21,10 +21,10 @@ f = open(os.path.join(SCRIPT_DIR, INPUT_FILE_PATH), 'r')
 data = json.load(f)
 print(sys.argv[1]);
 print(data);
-for i in range(len(data['entries'])):
-	entry = data['entries'][i]
+for i in range(len(data[u'entries'])):
+	entry = data[u'entries'][i]
 	print(entry);
-	name = entry["emergency"]['name'] + " - " + entry['queue']['name']
+	name = entry[u"emergency"][u'name'] + " - " + entry[u'queue'][u'name']
 	if name not in names:
 		names.append(name)
 
