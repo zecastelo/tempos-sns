@@ -73,9 +73,8 @@ app.get('/:instId', function(req, res){
 			console.log(stderr);
 			res.send("Oops, something went wrong!");
 		} else {
-			/*res.setHeader('Content-disposition', 'attachment; filename=registoTemposSNS'+req.params.instId+'.xlsx');
-			res.sendFile(__dirname + "/export-xls/output.xlsx");*/
-			res.send(stdout);
+			res.setHeader('Content-disposition', 'attachment; filename=registoTemposSNS'+req.params.instId+'.xlsx');
+			res.sendFile(__dirname + "/export-xls/output.xlsx");
 		}
 	}
 	console.log(req.params.instId);
