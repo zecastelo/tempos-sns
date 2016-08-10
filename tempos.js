@@ -18,7 +18,7 @@ function parseData(id){
 	request(BASE_URL + id, function(error, response, data){
         if(!error){
 			data = JSON.parse(data);
-			if (!'Result' in data) {
+			if (!('Result' in data)) {
 				fs.appendFile(filepath, "", function (err) {if (err){console.log("Error append file (tempos.js): ");console.log(err)}});
 			}
 			for (i in data.Result) {
@@ -73,7 +73,7 @@ app.get('/:instId', function(req, res){
 	function puts(error, stdout, stderr) {
 		if (error){
 			console.log(stderr);
-			res.send(stderr);
+			res.send("Oops, something went wrong!");
 		} else {
 			res.setHeader('Content-disposition', 'attachment; filename=registoTemposSNS'+req.params.instId+'.xlsx');
 			res.sendFile(__dirname + "/export-xls/output.xlsx");
