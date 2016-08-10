@@ -14,8 +14,6 @@ INPUT_FILE_PATH = "../instituiton-"+str(sys.argv[1])+".json"
 OUTPUT_FILE_PATH = "output.xlsx"
 cols_per_category = 16
 names = []
-file = codecs.open(os.path.join(SCRIPT_DIR, INPUT_FILE_PATH), "r", "utf-8")
-lines = file.readlines()
 data = False
 
 with open(os.path.join(SCRIPT_DIR, INPUT_FILE_PATH), 'r') as data_file:    
