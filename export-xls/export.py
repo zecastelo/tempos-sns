@@ -72,18 +72,18 @@ for i, line in enumerate(lines):
 	if info != LASTINFO[col_multiplier]:
 		for i, item in enumerate(info):
 			if i == 0:
-				(date, time) = item.split('T')
+				(date, tm) = item.split('T')
 				(year, month, day) = date.split('-')
-				time = time.split('.')[0];
+				tm = tm.split('.')[0];
 				worksheet.write(row, col, year)
 				col+=1
 				worksheet.write(row, col, month)
 				col+=1
 				worksheet.write(row, col, day)
 				col+=1
-				worksheet.write(row, col, time)
+				worksheet.write(row, col, tm)
 				col+=1
-				timestr = year+"-"+month+"-"+day+" "+time
+				timestr = year+"-"+month+"-"+day+" "+tm
 				pattern = '%Y.%m.%d %H:%M:%S'
 				epoch = int(time.mktime(time.strptime(timestr, pattern)))
 				worksheet.write(row, col, epoch) #FIXME ESCREVER O TEMPO EM EPOCH
