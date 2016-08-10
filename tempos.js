@@ -90,9 +90,7 @@ InstitutionFile.prototype.save = function (){
 	writeJsonFile(this.content, this.path);
 }
 
-a = new InstitutionFile(211, function(file){
-	console.log(file.error);
-})
+a = new InstitutionFile(211);
 
 a.save();
 
