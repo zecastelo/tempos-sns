@@ -125,16 +125,16 @@ function parseData(id){
 						entry.data.queue.name = 'Geral';
 					}
 					
-					entry.data.colors.red.queue-length = dados.Red.Length;
-					entry.data.colors.red.queue-time = dados.Red.Time;
-					entry.data.colors.orange.queue-length = dados.Orange.Length;
-					entry.data.colors.orange.queue-time = dados.Orange.Time;
-					entry.data.colors.yellow.queue-length = dados.Yellow.Length;
-					entry.data.colors.yellow.queue-time = dados.Yellow.Time;
-					entry.data.colors.green.queue-length = dados.Green.Length;
-					entry.data.colors.green.queue-time = dados.Green.Time;
-					entry.data.colors.blue.queue-length = dados.Blue.Length;
-					entry.data.colors.blue.queue-time = dados.Blue.Time;
+					entry.data.colors.red['queue-length'] = dados.Red.Length;
+					entry.data.colors.red['queue-time'] = dados.Red.Time;
+					entry.data.colors.orange['queue-length'] = dados.Orange.Length;
+					entry.data.colors.orange['queue-time'] = dados.Orange.Time;
+					entry.data.colors.yellow['queue-length'] = dados.Yellow.Length;
+					entry.data.colors.yellow['queue-time'] = dados.Yellow.Time;
+					entry.data.colors.green['queue-length'] = dados.Green.Length;
+					entry.data.colors.green['queue-time'] = dados.Green.Time;
+					entry.data.colors.blue['queue-length'] = dados.Blue.Length;
+					entry.data.colors.blue['queue-time'] = dados.Blue.Time;
 					
 					ins.addEntry(entry);
 					ins.save();
