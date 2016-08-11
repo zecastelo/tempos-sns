@@ -10,7 +10,6 @@ import time
 import json
 
 SCRIPT_DIR = os.path.dirname(__file__)
-print sys.argv
 INPUT_FILE_PATH = "../instituiton-"+str(sys.argv[1])+".json"
 OUTPUT_FILE_PATH = str(sys.argv[2])
 cols_per_category = 16
@@ -102,7 +101,6 @@ for i, e in enumerate(data['entries']):
 		col+=1
 		
 		for a in entry_data['colors'].keys():
-			print(entry_data['colors'][a])
 			num_patients = entry_data['colors'][a]['queue-length']
 			wait_time = entry_data['colors'][a]['queue-time']
 

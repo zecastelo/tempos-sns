@@ -11,7 +11,11 @@ var INSTITUICOES = require('./instituicoes.js')
 BASE_URL = "http://tempos.min-saude.pt/api.php/standbyTime/";
 INTERVALO_TEMPO = 3600/2 * 1000;
 BCKUPINTERVAL = 3600 * 5;
+
 app.set('port',  8080);
+app.set('views', __dirname + '/views')
+app.set('view engine', 'jade')
+app.use(express.static(__dirname + '/public'))
 
 function Entry(){
 	this.entryDate = 0;
@@ -170,6 +174,10 @@ for (key in INSTITUICOES){
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+app.get('/'. function(){
+	res.render('home');
+})
 
 app.get('/excel/:instid', function(req, res){
 	rid = Math.round(Math.random()*10000)

@@ -6,7 +6,8 @@
   "author"       : "Jose Castelo",
   "dependencies" : {
     "express"    : "latest",
-    "request"    : "latest"
+    "request"    : "latest",
+	"jade"		 : "latest"
   },
   "scripts" : {
 	  "start" : "node tempos.js"
