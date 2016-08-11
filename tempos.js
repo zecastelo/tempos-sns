@@ -71,7 +71,7 @@ function InstitutionFile(institutionId, cb) {
 		'entries':[]
 	};
 	this.onload = function(callback){
-		self._onloadedcalls.append(callback);
+		self._onloadedcalls.push(callback);
 	}
 	this.loadFile = function (exists){
 		if (exists){
