@@ -16,8 +16,7 @@ UTILIZAÇÃO:
 3. Correr no terminal o commando "node tempos.js".
 (4.) O servidor fará backups dos ficheiros com a informação a cada intervalo de tempo (variavel BCKUPINTERVAL, em segundos)
 
-Para receber os dados em formato .xlsx (ficheiro Excel) basta aceder a /excel/#instituição e o download será feito. O #instituição pode ser consultado em http://tempos.min-saude.pt/#/instituicoes.
-Por exemplo, para requisitar o ficheiro .xlsx relativo ao hospital de S. José (Lisboa) o link será /excel/211.
+Para receber os dados em formato .xlsx (ficheiro Excel) basta aceder a /excel/#instituição e o download será feito. Alternativamente, na homepage há ainda uma lista de todas as instituições.
 
 
 José Castelo, 2016 (jbcastelo@hotmail.com)
