@@ -10,6 +10,7 @@ var INSTITUICOES = require('./instituicoes.js')
 
 BASE_URL = "http://tempos.min-saude.pt/api.php/standbyTime/";
 INTERVALO_TEMPO = 3600/2 * 1000;
+BCKUPINTERVAL = 3600 * 5;
 app.set('port',  8080);
 
 function Entry(){
@@ -187,5 +188,5 @@ app.get('/excel/:instid', function(req, res){
 	exec("python " + __dirname + "/export-xls/export.py " +  req.params.instid, puts);
 })
 
-setInterval(genBackup, 3600*5*1000)
+setInterval(genBackup, BCKUPINTERVAL*1000)
 

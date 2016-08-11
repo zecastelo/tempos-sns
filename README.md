@@ -1,7 +1,7 @@
 # tempos-sns
 
 O tempos-sns recolhe dados do Serviço Nacional Saude. Mais concretamente recolhe dados sobre as urgências (tempos e filas de espera). 
-Neste momento está limitado ao hospital de São José, mas é facilmente extensivel a outros.
+Os dados são recolhidos de todas as instituições aderentes mas existem instituições cujos dados nem sempre estão disponiveis.
 
 REQUISITOS:
 
@@ -14,8 +14,10 @@ UTILIZAÇÃO:
 2. Abrir um terminal na pasta.
 4. Instalar as dependencias do Node.js (comando "npm install").
 3. Correr no terminal o commando "node tempos.js".
+(4.) O servidor fará backups dos ficheiros com a informação a cada intervalo de tempo (variavel BCKUPINTERVAL, em segundos)
 
-Ao aceder o IP do servidor será feito o download do ficheiro .xlsx (Excel) que contem os dados recolhidos.
+Para receber os dados em formato .xlsx (ficheiro Excel) basta aceder a <IPdoservidor>/excel/<idinstituição> e o download será feito. O id de cada instituição pode ser consultado em http://tempos.min-saude.pt/#/instituicoes.
+Por exemplo, para requisitar o ficheiro .xlsx relativo ao hospital de S. José (Lisboa) o link será <IPdoservidor>/excel/211.
 
 
 José Castelo, 2016 (jbcastelo@hotmail.com)
