@@ -172,6 +172,8 @@ http.createServer(app).listen(app.get('port'), function(){
 });
 
 app.get('/excel/:instid', function(req, res){
+	rid = Math.round(Math.random()*10000)
+	filename = "output-" + rid + ".xlsx"
 	function puts(error, stdout, stderr) {
 		if (error){
 			console.log("Error in puts!\n");
@@ -182,10 +184,11 @@ app.get('/excel/:instid', function(req, res){
 		} else {
 			console.log(stdout);
 			res.setHeader('Content-disposition', 'attachment; filename=registoTemposSNS'+req.params.instid+'.xlsx');
-			res.sendFile(__dirname + "/export-xls/output.xlsx");
+			res.sendFile(__dirname + "/export-xls/" + filename);
+			setTimeout(function(){exec("rm " + __dirname + "/export-xls/" + filename)}, 10000);
 		}
 	}
-	exec("python " + __dirname + "/export-xls/export.py " +  req.params.instid, puts);
+	exec("python " + __dirname + "/export-xls/export.py " +  req.params.instid + " " + filename, puts);
 })
 
 setInterval(genBackup, BCKUPINTERVAL*1000)

@@ -12,7 +12,7 @@ import json
 SCRIPT_DIR = os.path.dirname(__file__)
 print sys.argv
 INPUT_FILE_PATH = "../instituiton-"+str(sys.argv[1])+".json"
-OUTPUT_FILE_PATH = "output.xlsx"
+OUTPUT_FILE_PATH = str(sys.argv[2])
 cols_per_category = 16
 names = []
 data = False
