@@ -214,4 +214,8 @@ app.get('/excel/:instid', function(req, res){
 })
 
 setInterval(genBackup, BCKUPINTERVAL*1000)
-
+process.on( 'SIGINT', function() {
+  console.log( "\n Shuting down tempos-sns... Please wait." );
+  genBackup();
+  setTimeout(process.exit, 1000);
+})
