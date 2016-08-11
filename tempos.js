@@ -177,6 +177,7 @@ http.createServer(app).listen(app.get('port'), function(){
 
 app.get('/', function(req, res){
 	res.render('home', {'institutions':INSTITUICOES, 'ids':Object.keys(INSTITUICOES)});
+	console.log(Object.keys(INSTITUICOES))
 })
 
 app.get('/excel/:instid', function(req, res){

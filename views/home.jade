@@ -1,6 +1,6 @@
 extend layout
 block content
 	p Bem-vindo ao tempos-sns, onde se encontram dados relativos ao tempos de espera das emergências por todo o país.
-	li
+	ul
 		each name, i in institutions
-			ul(href='/excel/'+ids[i]) name
+			li(href='/excel/'+ids[i])= name
