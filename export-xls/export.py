@@ -95,10 +95,10 @@ for i, e in enumerate(data['entries']):
 		timestr = day+"/"+month+"/"+year+" "+tm
 		pattern = '%d/%m/%Y %H:%M:%S'
 		epoch = int(time.mktime(time.strptime(timestr, pattern)))
-		worksheet.write(row, col, epoch) #FIXME ESCREVER O TEMPO EM EPOCH
+		worksheet.write(row, col, epoch)
 		col+=1
 		
-		worksheet.write(row, col, timestr) #FIXME ESCREVER O TEMPO EM EPOCH
+		worksheet.write(row, col, timestr)
 		col+=1
 		
 		for a in entry_data['colors'].keys():
@@ -110,8 +110,8 @@ for i, e in enumerate(data['entries']):
 			col+=1
 			worksheet.write(row, col, wait_time)
 			col+=1
-			rows[col_multiplier]+=1;
-			
+		
+		rows[col_multiplier]+=1;	
 		LASTINFO[col_multiplier] = entry['entryDate']
 	
 f.close()
